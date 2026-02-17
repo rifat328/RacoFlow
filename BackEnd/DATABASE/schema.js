@@ -1,4 +1,3 @@
-import { varchar } from "drizzle-orm/mysql-core";
 import {
   pgTable,
   serial,
@@ -7,6 +6,7 @@ import {
   pgEnum,
   uuid,
   PgUUID,
+  varchar,
 } from "drizzle-orm/pg-core";
 
 //---Enums---
@@ -33,7 +33,7 @@ export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: varchar("name", { length: 50 }).notNull(),
   email: varchar("email", { length: 50 }).unique().notNull(),
-  password: varchar("password", { length: 50 }).notNull(),
+  password: text("password").notNull(),
   role: roleEnum("role").default("USER"),
   createdAt: timestamp("created_at").defaultNow(),
 });
