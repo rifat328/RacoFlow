@@ -45,6 +45,7 @@ export const projects = pgTable("projects", {
   description: text("description").notNull(),
   status: projectStatusEnum("status").default("OPEN"),
   buyerId: uuid("buyer_id").references(() => users.id),
+  solverId: uuid("solver_id").references(() => users.id), // Nullable because it starts unassigned
   createdAt: timestamp("created_at").defaultNow(),
 });
 
