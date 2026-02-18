@@ -2,10 +2,13 @@ import express from "express";
 import { PORT, CORS_ORIGIN } from "./config/env.js";
 import cookieParser from "cookie-parser";
 import connectToDatabase from "./DATABASE/mongodb.js";
-// import authRouter from "./routes/auth.routes.js";
-// import userRouter from "./routes/user.routes.js";
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js";
+import projectRouter from "./routes/project.route.js";
+import taskRouter from "./routes/task.route.js";
+import requestRouter from "./routes/request.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
-// import parcelRouter from "./routes/parcel.routes.js";
+
 // import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 import cors from "cors";
 import { swaggerSpec } from "./swagger.js";
@@ -40,10 +43,11 @@ app.use(
 // app.use(arcjetMiddleware);
 
 // Use routes
-// app.use("/api/v1/auth", authRouter);
-// app.use("/api/v1/users", userRouter);
-// app.use("/api/v1/projects", parcelRouter);
-// app.use("/api/v1/tasks", parcelRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/projects", projectRouter);
+app.use("/api/v1/tasks", taskRouter);
+app.use("/api/v1/requests", requestRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the RacoFlow workflow");
