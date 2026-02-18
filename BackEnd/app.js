@@ -7,6 +7,7 @@ import userRouter from "./routes/user.route.js";
 import projectRouter from "./routes/project.route.js";
 import taskRouter from "./routes/task.route.js";
 import requestRouter from "./routes/request.route.js";
+import adminRouter from "./routes/admin.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 
 // import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
@@ -48,6 +49,7 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/projects", projectRouter);
 app.use("/api/v1/tasks", taskRouter);
 app.use("/api/v1/requests", requestRouter);
+app.use("/api/v1/admins", adminRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the RacoFlow workflow");
