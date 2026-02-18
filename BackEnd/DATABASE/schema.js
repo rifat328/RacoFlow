@@ -60,3 +60,12 @@ export const tasks = pgTable("tasks", {
   createdAt: timestamp("created_at").defaultNow(),
   zipFileUrl: text("zip_file_url"),
 });
+
+export const requests = pgTable("request", {
+  id: serial("id").primaryKey(),
+  projectId: serial("project_id").references(() => projects.id),
+  solverId: uuid("solver_id")
+    .references(() => users.id)
+    .notNull(),
+  status: requestStatusEnum("status").default("PENDING"),
+});
